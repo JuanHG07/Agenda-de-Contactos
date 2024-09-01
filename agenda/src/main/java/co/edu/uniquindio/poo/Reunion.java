@@ -9,6 +9,12 @@ public class Reunion {
     public String hora;
     public Collection<Contacto> contactosR;
 
+    /**
+     * Metodo Constructor para Reunion
+     * @param descripcion
+     * @param fecha
+     * @param hora
+     */
     public Reunion(String descripcion, String fecha, String hora) {
         this.descripcion = descripcion;
         this.fecha = fecha;

@@ -8,6 +8,11 @@ public class Grupo {
     public String categoria;
     public Collection<Contacto> contactosg;
 
+    /**
+     * Metodo Contructor para Grupo
+     * @param nombre
+     * @param categoria
+     */
     public Grupo(String nombre, String categoria) {
         this.nombre = nombre;
         this.categoria = categoria;

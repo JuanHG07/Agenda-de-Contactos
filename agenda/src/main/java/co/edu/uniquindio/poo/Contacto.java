@@ -8,6 +8,14 @@ public class Contacto {
     public String direccion;
     public String email;
 
+    /**
+     * Metodo Constructor para Contacto
+     * @param nombre
+     * @param alias
+     * @param telefono
+     * @param direccion
+     * @param email
+     */
     public Contacto(String nombre, String alias, String telefono, String direccion, String email) {
 
         this.nombre = nombre;

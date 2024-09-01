@@ -4,8 +4,6 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-import javax.swing.JOptionPane;
-
 public class Agenda {
 
     private String nombre;
@@ -13,6 +11,11 @@ public class Agenda {
     public Collection<Grupo> grupos;
     public Collection<Reunion> reuniones;
 
+    /**
+     * Metodo Constructor de Agenda
+     * 
+     * @param nombre
+     */
     public Agenda(String nombre) {
         this.nombre = nombre;
         contactos = new LinkedList<>();
@@ -20,8 +23,9 @@ public class Agenda {
         reuniones = new LinkedList<>();
     }
 
-    // Metodos //
-
+    /**
+     * Metodo para una interfaz de Menu
+     */
     public void menu() {
         imprimir("------------------------");
         imprimir("Agenda de Contactos: " + nombre);
@@ -51,6 +55,11 @@ public class Agenda {
         }
     }
 
+    /**
+     * Metodo que direcciona acciones dependiendo un caso (num)
+     * 
+     * @param num
+     */
     public void submenu(int num) {
         switch (num) {
             case 1:
@@ -67,6 +76,9 @@ public class Agenda {
         }
     }
 
+    /**
+     * Metodo que realiza acciones de tipo Contacto
+     */
     public void operacionContacto() {
         imprimir("------------------------");
         imprimir("1. Crear Contacto.");
@@ -99,6 +111,9 @@ public class Agenda {
         }
     }
 
+    /**
+     * Metodo que crea un Contacto
+     */
     public void crearContacto() {
         imprimir("------------------------");
         String nombre = ingresarCadena("Nombre: ");
@@ -118,10 +133,22 @@ public class Agenda {
         }
     }
 
+    /**
+     * Metodo que recibe un Contacto y agrega a la lista de Contactos
+     * 
+     * @param contacto
+     */
     public void agregarContacto(Contacto contacto) {
         contactos.add(contacto);
     }
 
+    /**
+     * Metodo que verifica si existe un Contacto ingresado en la lista de Contactos
+     * 
+     * @param nombre
+     * @param telefono
+     * @return centinela
+     */
     public boolean verificarContacto(String nombre, String telefono) {
         boolean verificar = false;
         for (Contacto contacto : contactos) {
@@ -132,6 +159,9 @@ public class Agenda {
         return verificar;
     }
 
+    /**
+     * Metodo que elimina un Contacto de la lista de Contactos
+     */
     public void eliminarContacto() {
         imprimir("------------------------");
         String nombre = ingresarCadena("Ingrese el nombre: ");
@@ -147,6 +177,9 @@ public class Agenda {
         submenu(1);
     }
 
+    /**
+     * Metodo que muestra un Contacto de la lista de Contactos
+     */
     public void mostrarContacto() {
         String nombre = ingresarCadena("Ingrese el nombre: ");
         String celular = ingresarCadena("Ingrese el telefono: ");
@@ -161,6 +194,9 @@ public class Agenda {
         submenu(1);
     }
 
+    /**
+     * Metodo para modificar un Contacto deseado de la lista de Contactos
+     */
     public void modificarContacto() {
         imprimir("------------------------");
         String nombre = ingresarCadena("Ingrese el nombre: ");
@@ -209,6 +245,9 @@ public class Agenda {
         submenu(1);
     }
 
+    /**
+     * Metodo que realiza acciones de tipo Grupo
+     */
     public void operacionGrupo() {
         imprimir("------------------------");
         imprimir("1. Crear Grupo.");
@@ -240,6 +279,9 @@ public class Agenda {
         }
     }
 
+    /**
+     * Metodo para crear un Grupo
+     */
     public void crearGrupo() {
         imprimir("------------------------");
         String nombre = ingresarCadena("Nombre del grupo: ");
@@ -256,6 +298,13 @@ public class Agenda {
         submenu(2);
     }
 
+    /**
+     * Metodo que recibe una verificación de existencia de un Grupo y el nombre del
+     * mismo, para luego modificar este mismo Grupo
+     * 
+     * @param verificacion
+     * @param nombre
+     */
     public void opcionesGrupo(boolean verificacion, String nombre) {
         if (verificacion) {
             Grupo grupo = buscarGrupo(nombre);
@@ -322,12 +371,18 @@ public class Agenda {
         }
     }
 
+    /**
+     * Metodo para validar existencia de un Grupo en la lista de Grupos
+     */
     public void modificarGrupo() {
         imprimir("------------------------");
         String nombre = ingresarCadena("Nombre del grupo a modificar: ");
         opcionesGrupo(verificarGrupo(nombre), nombre);
     }
 
+    /**
+     * Metodo para eliminar un Grupo de la lista de Grupos
+     */
     public void eliminarGrupo() {
         imprimir("------------------------");
         String nombre = ingresarCadena("Ingrese el nombre del grupo a eliminar: ");
@@ -345,6 +400,13 @@ public class Agenda {
         submenu(2);
     }
 
+    /**
+     * Metodo para buscar un Grupo en la lista de Grupos con el nombre y retornar el
+     * mismo Grupo
+     * 
+     * @param nombre
+     * @return
+     */
     public Grupo buscarGrupo(String nombre) {
         for (Grupo grupo : grupos) {
             if (grupo.getNombre().equals(nombre)) {
@@ -354,6 +416,13 @@ public class Agenda {
         return null;
     }
 
+    /**
+     * Metodo que verifica la existencia de un Grupo en la lista de Grupos con el
+     * nombre y retornar centinela
+     * 
+     * @param nombre
+     * @return
+     */
     public boolean verificarGrupo(String nombre) {
         boolean verificar = false;
         for (Grupo grupo : grupos) {
@@ -364,6 +433,9 @@ public class Agenda {
         return verificar;
     }
 
+    /**
+     * Metodo para imprimir la informacion de un grupo
+     */
     public void mostrarGrupo() {
         String nombre = ingresarCadena("Ingrese el nombre del grupo a buscar:");
         boolean existe = false;
@@ -382,6 +454,11 @@ public class Agenda {
         }
     }
 
+    /**
+     * Metodo para determinar la categoria de un grupo
+     * 
+     * @return
+     */
     public String determinarCategoria() {
         int numero = ingresarEntero("Categoria:\n1. Oficina\n2. Familia\n3. Amigos\n4. Fiesta");
         String categoria = ("");
@@ -402,6 +479,9 @@ public class Agenda {
         return categoria;
     }
 
+    /**
+     * Metodo para gestionar las reuniones
+     */
     public void operacionReunion() {
         imprimir("------------------------");
         imprimir("1. Crear Reunion.");
@@ -433,6 +513,10 @@ public class Agenda {
         }
     }
 
+    /**
+     * Metodo para crear una reunion verificando que la fecha y hora no estén
+     * duplicadas
+     */
     public void crearReunion() {
         imprimir("------------------------");
         String fecha = ingresarCadena("Ingrese Fecha de la Reunion: ");
@@ -449,10 +533,20 @@ public class Agenda {
         }
     }
 
+    /*
+     * Metodo para agregar una reunion a la lista de reuniones
+     */
     public void agregarReunion(Reunion reunion) {
         reuniones.add(reunion);
     }
 
+    /**
+     * Metodo para verificar la existencia de una reunion
+     * 
+     * @param fecha
+     * @param hora
+     * @return verificar
+     */
     public boolean verificarReunion(String fecha, String hora) {
         boolean verificar = false;
         for (Reunion reunion : reuniones) {
@@ -463,6 +557,9 @@ public class Agenda {
         return verificar;
     }
 
+    /**
+     * Metodo para eliminar una reunion
+     */
     public void eliminarReunion() {
         imprimir("------------------------");
         String fecha = ingresarCadena("Ingrese Fecha de la Reunion: ");
@@ -478,6 +575,9 @@ public class Agenda {
         submenu(3);
     }
 
+    /**
+     * Metodo para mostrar la informacion de una reunion
+     */
     public void mostrarReunion() {
         imprimir("------------------------");
         String fecha = ingresarCadena("Ingrese Fecha de la Reunion: ");
@@ -493,6 +593,9 @@ public class Agenda {
         submenu(3);
     }
 
+    /**
+     * Metodo para buscar una reunion que se quiera modificar
+     */
     public void modificarReunion() {
         imprimir("------------------------");
         String fecha = ingresarCadena("Ingrese Fecha de la Reunion: ");
@@ -507,6 +610,11 @@ public class Agenda {
         }
     }
 
+    /**
+     * Metodo para gestionar las modificaciones realizables de una reunion
+     * 
+     * @param reunion
+     */
     public void opcionesReunion(Reunion reunion) {
         imprimir("------------------------");
         imprimir(reunion.toString());
@@ -531,16 +639,16 @@ public class Agenda {
                 reunion.setDescripcion(ingresarCadena("Ingrese nueva Descripción: "));
                 opcionesReunion(reunion);
                 break;
-            case 4:      
+            case 4:
                 Contacto contacto = buscarContacto();
                 if (contacto != null) {
                     if (reunion.getContactosR().contains(contacto)) {
-                    imprimir("El contacto ya está en el reunion.");
-                    opcionesReunion(reunion);
+                        imprimir("El contacto ya está en el reunion.");
+                        opcionesReunion(reunion);
                     } else {
-                    reunion.getContactosR().add(contacto);
-                    imprimir("El contacto se ha agregado exitosamente.");
-                    opcionesReunion(reunion);
+                        reunion.getContactosR().add(contacto);
+                        imprimir("El contacto se ha agregado exitosamente.");
+                        opcionesReunion(reunion);
                     }
                 } else {
                     imprimir("El contacto no existe.");
@@ -551,12 +659,12 @@ public class Agenda {
                 Contacto contacto1 = buscarContacto();
                 if (contacto1 != null) {
                     if (reunion.getContactosR().contains(contacto1)) {
-                    reunion.getContactosR().remove(contacto1);
-                    imprimir("El contacto ha sido eliminado.");
-                    opcionesReunion(reunion);
+                        reunion.getContactosR().remove(contacto1);
+                        imprimir("El contacto ha sido eliminado.");
+                        opcionesReunion(reunion);
                     } else {
-                    imprimir("El contacto no está en la reunion.");
-                    opcionesReunion(reunion);
+                        imprimir("El contacto no está en la reunion.");
+                        opcionesReunion(reunion);
                     }
                 } else {
                     imprimir("El contacto no existe.");
@@ -573,6 +681,11 @@ public class Agenda {
         }
     }
 
+    /**
+     * Metodo para buscar un contacto en la lista de contactos.
+     * 
+     * @return contacto
+     */
     public Contacto buscarContacto() {
         String nombre = ingresarCadena("Ingrese nombre del contacto: ");
         String telefono = ingresarCadena("Ingrese telefono del contacto: ");
@@ -584,9 +697,22 @@ public class Agenda {
         return null;
     }
 
+    /**
+     * Metodo para imprimir en la consola
+     * 
+     * @param texto
+     */
+
     public static void imprimir(String texto) {
         System.out.println(texto);
     }
+
+    /**
+     * Metodo para ingresa una cadena
+     * 
+     * @param texto
+     * @return cadena
+     */
 
     public static String ingresarCadena(String texto) {
         Scanner scanner = new Scanner(System.in);
@@ -595,11 +721,12 @@ public class Agenda {
         return cadena;
     }
 
-    public static String ingresarCadena1(String texto) {
-        String cadena = JOptionPane.showInputDialog(texto);
-        return cadena;
-    }
-
+    /**
+     * Metodo para ingresar un numero entero, cualquier dato invalido
+     * 
+     * @param texto
+     * @return num
+     */
     public static int ingresarEntero(String texto) {
         Scanner scanner = new Scanner(System.in);
         int num = 0;
